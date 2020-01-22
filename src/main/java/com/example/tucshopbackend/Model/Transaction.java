@@ -7,4 +7,9 @@ import javax.persistence.Id;
 public class Transaction {
     @Id
     private Long id;
+
+
+    private Long amount;
+
+
 }

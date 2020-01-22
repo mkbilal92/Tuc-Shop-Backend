@@ -1,10 +1,8 @@
 package com.example.tucshopbackend.DTO;
 
-public class CategoryDTO {
+public class RequestProductDTO {
 
     String name;
-    String image;
-
 
     public String getName() {
         return name;
@@ -12,13 +10,5 @@ public class CategoryDTO {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
     }
 }
