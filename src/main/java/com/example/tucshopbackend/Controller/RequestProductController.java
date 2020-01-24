@@ -3,6 +3,7 @@ package com.example.tucshopbackend.Controller;
 import com.example.tucshopbackend.DTO.RequestProductDTO;
 import com.example.tucshopbackend.Repository.RequestProductRepository;
 import com.example.tucshopbackend.Services.RequestProductService;
+import com.example.tucshopbackend.commons.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +20,7 @@ public class RequestProductController {
 
      @PostMapping("/")
 
-   public String  addRequest (@RequestBody RequestProductDTO requestforproduct){
+   public ApiResponse addRequest (@RequestBody RequestProductDTO requestforproduct){
 
 
       return  this.requestProductService.saveRequestforproduct(requestforproduct);
