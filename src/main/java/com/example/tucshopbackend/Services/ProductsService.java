@@ -21,20 +21,31 @@ public class ProductsService {
     CategoryRepository categoryRepository;
 
 
-    public ApiResponse saveProducts (ProductsDTO products)
+    public ApiResponse saveProducts (ProductsDTO products) {
 
-    {
-        Products products1 = new Products();
+        Products isProductsPresents = productsrepository.findByName(products.getName());
+
+        if(isProductsPresents==null){
+
+            Products products1 = new Products();
+            products1.setName(products.getName());
+            products1.setCategory(products.getCategory());
+            products1.setDescription(products.getDescription());
+            products1.setImage(products.getImage());
+            products1.setPrice(products.getPrice());
+            productsrepository.save(products1);
 
 
-        products1.setName(products.getName());
-        products1.setCategory(products.getCategory());
-        products1.setDescription(products.getDescription());
-        products1.setPrice(products.getPrice());
-        productsrepository.save(products1);
+            return new ApiResponse (200,"success",products1);
 
 
-        return new ApiResponse (200,"success",products1);
+        }
+
+        else {
+
+            return new ApiResponse(409, "Duplicate", products.getName() );
+
+        }
 
 
 

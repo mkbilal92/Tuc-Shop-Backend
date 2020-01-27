@@ -1,6 +1,9 @@
 package com.example.tucshopbackend.Model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Products {
@@ -11,10 +14,24 @@ public class Products {
     private  String name;
     private String description;
     private  String price;
+    private String image;
 
     @ManyToOne
     @JoinColumn (name = "category_id", nullable = false)
     Category category;
+
+    @ManyToMany(mappedBy = "productsList" )
+    @JsonBackReference
+
+    private List<Transaction> transactions;
+
+    public List<Transaction> getTransactions() {
+        return transactions;
+    }
+
+    public void setTransactions(List<Transaction> transactions) {
+        this.transactions = transactions;
+    }
 
     public Long getId() {
         return id;
@@ -54,5 +71,13 @@ public class Products {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

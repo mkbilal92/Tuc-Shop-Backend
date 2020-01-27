@@ -9,7 +9,7 @@ public class ProductsDTO {
     String name;
     String description;
     String price;
-
+    String image;
 
   Category category;
 
@@ -43,5 +43,13 @@ public class ProductsDTO {
 
     public void setPrice(String price) {
         this.price = price;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

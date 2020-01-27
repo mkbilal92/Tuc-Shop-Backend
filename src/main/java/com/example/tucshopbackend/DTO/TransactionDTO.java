@@ -1,24 +1,18 @@
-package com.example.tucshopbackend.Model;
+package com.example.tucshopbackend.DTO;
 
-import javax.persistence.*;
+import com.example.tucshopbackend.Model.Products;
+
 import java.time.LocalDate;
 import java.util.List;
 
-@Entity
-public class Transaction {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+public class TransactionDTO {
+
     LocalDate date;
     Double amount;
     String createdBy;
     String updatedBy;
 
-    @ManyToMany
-    @JoinTable (name= "products_Transaction", joinColumns = @JoinColumn(name="prod_id", referencedColumnName = "id"),
-            inverseJoinColumns =@JoinColumn(name="trans_id", referencedColumnName = "id"))
-
-    private List<Products>productsList;
+    List<Products> productsList;
 
     public List<Products> getProductsList() {
         return productsList;
@@ -26,14 +20,6 @@ public class Transaction {
 
     public void setProductsList(List<Products> productsList) {
         this.productsList = productsList;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public LocalDate getDate() {

@@ -17,12 +17,26 @@ public class CategoryService {
     public ApiResponse saveCategory (CategoryDTO category){
 
 
-        Category category1 = new Category ();
+        Category isCategoryPresent = categoryRepository.findByname(category.getName());
 
-        category1.setName(category.getName());
-        category1.setImage(category.getImage());
-        categoryRepository.save(category1);
-        return new ApiResponse(200,"success",category1);
+        if(isCategoryPresent==null){
+
+            Category category1 = new Category ();
+            category1.setName(category.getName());
+            category1.setImage(category.getImage());
+            categoryRepository.save(category1);
+            return new ApiResponse(200,"success",category1);
+        }
+
+        else{
+
+          return  new ApiResponse(409, "Duplicate" , category.getName());
+
+        }
+
+
+
+
     }
 
 
